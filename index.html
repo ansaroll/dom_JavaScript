@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+
+    <style>
+        .title{
+            text-align: center;
+        }
+        .div-container{
+           margin: 3%;
+           display: flex;
+           flex-direction: row;
+           flex-wrap: wrap;
+           justify-content: space-evenly;
+        }
+        .f-div{
+            /* text-overflow: inherit; */
+            /* box-sizing: border-box; */
+            /* border: 1px solid black; */
+            box-shadow: 2px 2px 3px;
+            padding: 5px;
+            width: 30%;
+            margin: 2px;
+        }
+        #iphoneImg{
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">
+        <h2>Quelques exemples avec DOM</h2>
+    </div>
+    <!-- <center> -->
+    <div class="div-container">
+        <div class="f-div">
+            <h2>Topics</h2>
+            <ol>
+                <li>Document.write()</li>
+                <li>selector.innerHTML()</li>
+                <li>selector.innerText()</li>
+                <li>selector.attribute()</li>
+                <li>selector.classList()</li>
+            </ol>
+        </div>
+    <!-- </center> -->
+
+        <div class="f-div">
+           <h4> 1 - Document.write() </h4><br> 
+            <script>
+                document.write("== >  this is a text by document.write()")
+            </script>
+        </div>
+       
+        <div class="f-div">
+            <h4>2 - Selector.innerHTML</h4>
+            <script>
+                    onClick = () => {
+                        let textBox = document.getElementById('textBox');
+                        textBox.innerHTML = "<h3> changed by innerHTML ! </h3> ";
+                        document.getElementById('btn1').style.display = 'none';
+                        
+
+                    }
+            </script>
+
+            <h2 id="textBox">textbox</h2>
+            <button id="btn1" onclick="onClick()">change this textbox above</button>
+        </div>
+
+        
+        <div class="f-div">
+            <h4>3 - selector.innerTex</h4> <br>
+            return the text content of the specified node . <br> # ne prend pas 
+            en compte les balises dans le text . 
+            <script>
+                onClick2 = () => {
+                    let textBox = document.getElementById('text');
+                    textBox.innerText = "<h1> changed by innerText ! </h1> ";
+                    document.getElementById('btn2').style.display = 'none';
+                    
+
+                }
+                </script>
+
+                <h2 id="text">textbox</h2>
+                <button id="btn2" onclick="onClick2()">change this textbox above</button>
+        </div>
+
+        <br>
+        <div class="f-div">
+           <h4> 4 - selector.attribute </h4> <br>
+            <script>
+                let i = 2;
+                onClick3 = () => {
+                    let image = document.getElementById('iphoneImg');
+                    image.src = 'iphone'+i+'.jpg' ;
+                    i++;
+                    // console.log(i + ' ' + image.src);
+                    if (i>4) {
+                        i = 1; 
+                    }
+                    // document.getElementById('btn').style.display = 'none';
+                }
+                </script>
+
+                <img id="iphoneImg" src="iphone1.jpg" alt=""> <br>
+                <button id="btn2" onclick="onClick3()">change this image above</button>
+
+        </div>
+
+        
+        <div class="f-div">
+           <h4> 5 - selector.classList()</h4> 
+            <h5 class="class1"> < h3 > class="class1" I'm Ansaroll  < / h3 > </3> 
+            <h5 class="class2"> < h3 > class="class1" I'm Ansaroll  < / h3 >  </3>
+            <p id="hidden"></p> 
+            <script>
+                onClick4 = () => {
+                    let p = document.getElementsByTagName('h5');
+                    let ph = document.getElementById('hidden');
+                    // p.classList;
+                    ph.classList.add('newClass');
+                    const list = p.classList;
+                    // console.log(p);
+                    // console.log(list);
+                    let text ='<p class="newClass" >Les classses de h3 sont :';
+
+                    for (let cssClass of p) {
+                        // console.log(cssClass.className);
+                        text += ' ' + cssClass.className + ', ';
+                    }
+
+                    ph.innerText = text + '</p> ';
+                    // console.log(p.classList[0]);
+                    // p.classList[0];
+                }
+                </script>
+
+                <button id="btn3" onclick="onClick4()">List class of h3 / add class </button>
+                <!-- <button id="btn4" onclick="onClick()">List class of h3 </button> -->
+                
+        </div>
+    </div>
+</body>
+</html>
